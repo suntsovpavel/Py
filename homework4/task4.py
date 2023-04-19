@@ -50,12 +50,12 @@ def parsePolynomial(string):
     # Приводим члены со степенями 1 и 0 к виду 'x^1' и 'x^0':
     for i in range(len(splitted)):   
         if len(splitted[i]) == 0:
-            return {}, f"'в splitted найдена пустышка: {splitted}'; исходная строка '{saveString}'"
+            return {}, f"'в splitted найдена пустышка: {splitted}'; исходная строка '{stringPrimary}'"
         
         # список включений 'x' в текущем сплите:
         indexes = getIndexesSubstr(splitted[i], 'x')
         if len(indexes)>1:
-            return {}, f"в '{splitted[i]}' имеется более одного 'x'; исходная строка '{saveString}'"
+            return {}, f"в '{splitted[i]}' имеется более одного 'x'; исходная строка '{stringPrimary}'"
         
         if not 'x^' in splitted[i]:
             if len(indexes) == 0:
