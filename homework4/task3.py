@@ -19,3 +19,6 @@ def task3(eps: float, maxDigits: int = 100):
 
 eps = float(input('Введите точность eps: '))
 print(f'Число pi с точностью {eps}: {task3(eps)}')
+
+# def task3(eps: float):
+#     return math.pi - math.pi % eps;    
