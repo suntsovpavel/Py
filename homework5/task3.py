@@ -12,7 +12,7 @@ def task3():
     print(f'numbers: {numbers}')
 
     unique = set(numbers)
-    print(f'Список уникальных элементов: {unique}')
     print(f'Совпадающих элементов в numbers: {len(numbers) - len(unique)}')
-
+    print(f'Множество уникальных элементов: {unique}')
+    
 task3()

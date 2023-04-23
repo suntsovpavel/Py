@@ -30,7 +30,7 @@ def task2():
     while flag:
         result = getIncreasingSeries(numbers)
         if len(result) > 1:
-            print(result)
+            print(f'Случайная возрастающая последовательность: {result}')
             flag = False
 task2()
 
