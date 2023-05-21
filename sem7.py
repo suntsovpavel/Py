@@ -62,6 +62,7 @@ def our_math_str():
 
 
 # Задача 3. Создайте декоратор для метода нахождения суммы.
+# а) функция sum не возвращает значение
 def our_format(func):
     def decorator(*args):
         #print('Сумма чисел: ')            
@@ -74,33 +75,52 @@ def our_format(func):
 @our_format
 def sum(a, b, c, d):
     print(a + b + c + d)
+#sum(3,5,7,8)
 
-sum(3,5,7,8)
+# б) функция sum возвращает значение
+def our_format(func):
+    def decorator(*args):
+        #print('Сумма чисел: ')            
+        for arg in args:
+            print(f'{arg} + ', end='')
+        print('\b\b= ', end='')   
+        result = func(*args)
+        print(result)
+        return result
+    return decorator       
 
+@our_format
+def sum(a, b, c, d):
+    return a + b + c + d
+#print(sum(3,5,7,8))
 
-# def stopwatch_fib(func):
-#     def decorator(N):
-#         start_time = time.time()
-#         func(N)
-#         print(f'время выполнения {time.time()-start_time}')
-#     return decorator  
-# @stopwatch_fib
-# def fib(N: int):
-#     return 1 if N<3 else (fib(N-1) + fib(N-2))
-# fib(45)
+# считаем числа фибоначчи рекурсией.
+def stopwatch_fib(func):
+    def decorator(N, count):
+        if count==0:
+            start_time = time.time()
+        result = func(N, count)
+        if count==0:
+            print(f'время выполнения {time.time()-start_time}')       
+        return result            
+    return decorator  
+@stopwatch_fib
+def fib(N: int, count: int):
+    return 1 if N<3 else fib(N-1, count+1) + fib(N-2, count+1)
+print(f'fib(40) = {fib(40, 0)}')
 
 # Задача 4. Создайте декоратор с параметрами.
-def greetings(hello):
-    def our_greetings(func):
-        def decorator():
-            name = func()
-            print(f'{hello}, {name}')
-        return decorator                
-    return our_greetings
+# def greetings(hello):
+#     def our_greetings(func):
+#         def decorator():
+#             name = func()
+#             print(f'{hello}, {name}')
+#         return decorator                
+#     return our_greetings
 
-@greetings('Привет')
-def get_name():
-    return input('как тебя зовут?\n')
+# @greetings('Привет')
+# def get_name():
+#     return input('как тебя зовут?\n')
 # get_name()
 
 
