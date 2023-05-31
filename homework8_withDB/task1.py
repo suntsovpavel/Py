@@ -13,7 +13,7 @@ def send_welcome(message):
         cursor.execute(query)
         result = cursor.fetchall()
     if len(result) == 0:    # такого пользователя нет, добавляем
-         query = f"""INSERT INTO users (id_user,first_name,second_name) VALUES (%s, %s, %s)"""                         
+         query = """INSERT INTO users (id_user,first_name,second_name) VALUES (%s, %s, %s)"""                         
          with connection.cursor() as cursor:
              cursor.execute(query, 
                             (message.from_user.id, 
