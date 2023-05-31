@@ -21,7 +21,7 @@ def send_welcome(message):
                              message.from_user.last_name))
              connection.commit() 
 
-         query = "SELECT id FROM users BY id DESC LIMIT 1";      
+         query = "SELECT id FROM users ORDER BY id DESC LIMIT 1";      
          with connection.cursor() as cursor:
              cursor.execute(query)
              result = cursor.fetchall()                                
