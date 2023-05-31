@@ -27,10 +27,7 @@ def send_welcome(message):
              result = cursor.fetchall()                                
     id_users = result[0][0]          
     
-    # Делаем запись сообщения пользователя в messages_from_users
-    # Данное сообщение может быть продолжением беседы, 
-    #   тогда нужно сохранить pointer_to на предыдущее сообщение. Пока присваиваеи NULL
-    
+    # Делаем запись сообщения пользователя в таблицу messages_from_users    
     # !!! Здесь должна быть проверка того, что передал пользователь,
     # чтобы базу не сломать
     query = """INSERT INTO messages_from_users 
