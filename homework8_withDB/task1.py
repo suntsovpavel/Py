@@ -8,12 +8,12 @@ bot = telebot.TeleBot("")
 @bot.message_handler(content_types=['text'])
 def send_welcome(message):
     # Проверяем, есть ли пользователь в таблице users и добавляем его, если его нет
-    query = f"SELECT id_user FROM users WHERE id_user = {message.from_user.id}"      
+    query = f"SELECT id FROM users WHERE id_user = {message.from_user.id}"      
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchall()
     if len(result) == 0:    # такого пользователя нет, добавляем
-         query = f"""INSERT INTO users (id_user,first_name,second_name) VALUES (%s, %s, %s)"""                         
+         query = """INSERT INTO users (id_user,first_name,second_name) VALUES (%s, %s, %s)"""                         
          with connection.cursor() as cursor:
              cursor.execute(query, 
                             (message.from_user.id, 
@@ -21,12 +21,11 @@ def send_welcome(message):
                              message.from_user.last_name))
              connection.commit() 
 
-         query = "SELECT id_user FROM users BY id DESC LIMIT 1";      
+         query = "SELECT id FROM users BY id DESC LIMIT 1";      
          with connection.cursor() as cursor:
              cursor.execute(query)
              result = cursor.fetchall()                                
-    id_user = result[0][0]
-    #print('id_user = ', id_user)            
+    id_users = result[0][0]          
     
     # Делаем запись сообщения пользователя в messages_from_users
     # Данное сообщение может быть продолжением беседы, 
@@ -37,7 +36,7 @@ def send_welcome(message):
     query = """INSERT INTO messages_from_users 
     (id_primary_user,date,text,isAnswered) VALUES (%s, NOW(), %s, False)"""   
     with connection.cursor() as cursor:
-        cursor.execute(query, (id_user, message.text))
+        cursor.execute(query, (id_users, message.text))
         connection.commit()     
             
     bot.reply_to(message, "Спасибо за оставленное сообщение. Вы получите ответ, как только наш сотрудник рассмотрит его")
