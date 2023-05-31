@@ -8,7 +8,7 @@ bot = telebot.TeleBot("")
 @bot.message_handler(content_types=['text'])
 def send_welcome(message):
     # Проверяем, есть ли пользователь в таблице users и добавляем его, если его нет
-    query = f"SELECT id FROM users WHERE id_user = {message.from_user.id}"      
+    query = f"SELECT id_user FROM users WHERE id_user = {message.from_user.id}"      
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchall()
@@ -21,7 +21,7 @@ def send_welcome(message):
                              message.from_user.last_name))
              connection.commit() 
 
-         query = "SELECT id FROM users BY id DESC LIMIT 1";      
+         query = "SELECT id_user FROM users BY id DESC LIMIT 1";      
          with connection.cursor() as cursor:
              cursor.execute(query)
              result = cursor.fetchall()                                
