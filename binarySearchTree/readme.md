@@ -1,4 +1,5 @@
 # Сбалансированное "черно-красное" бинарное дерево поиска
+[Гик-брэйнс](https://docs.google.com/document/d/1PCAV5-9bP7Kl0-4Om1wO5Lzh1o_zieGZ/edit)
 ## binarySearchTree.py:
 * Дерево, последовательно заполненное значениями от 1 до 10:
 ```
@@ -23,12 +24,12 @@
 (value=5, color=black, left=3, right=6)
 (value=6, color=black, left=None, right=None)
 (value=3, color=red, left=2, right=4)
+(value=4, color=black, left=None, right=None)
 (value=2, color=black, left=1, right=None)
 (value=1, color=red, left=None, right=None)
 ```
 ![Картинка](02.png)
 ## Схемы операций балансировки
-[Гик-брэйнс](https://docs.google.com/document/d/1PCAV5-9bP7Kl0-4Om1wO5Lzh1o_zieGZ/edit)
 * Если правый ребенок – красный, а левый - черный, то применяем малый правый поворот:
 ![Картинка](B.png)
 * Если левый ребенок красный и его левый ребенок тоже красный – применяем малый левый поворот:
